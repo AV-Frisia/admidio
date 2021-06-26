@@ -105,7 +105,7 @@ else
         $event = new TableDate($gDb);
         $event->readDataByRoleId($roleIds[0]);
 
-        $showComment = $event->getValue('dat_allow_comments');
+	$showComment = $event->getValue('dat_allow_comments') && ($gCurrentUser->isAdministrator() || $gCurrentUser->isLeaderOfRole($roleIds[0]));
         $showCountGuests = $event->getValue('dat_additional_guests');
 
         if ($getMode === 'html' && ($gCurrentUser->isAdministrator() || $gCurrentUser->isLeaderOfRole($roleIds[0])))
